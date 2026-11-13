@@ -1,14 +1,14 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { renderAddons, renderHome, renderPrivacy } from '../site/pages.mjs';
-import { renderHeaders } from '../site/headers.mjs';
+import { publicHeaders } from '../site/headers.mjs';
 
 const output = new URL('../dist/', import.meta.url);
 await rm(output, { recursive: true, force: true });
 await cp(new URL('../public/', import.meta.url), output, { recursive: true });
 await cp(new URL('../worker/', import.meta.url), new URL('_worker.js/', output), { recursive: true });
-await writeFile(new URL('_worker.js/index.js', output), "export { default } from './index.mjs';\n");
 const consent = await readFile(new URL('consent.js', output), 'utf8');
-await writeFile(new URL('_headers', output), renderHeaders(consent));
+const headers = publicHeaders(consent);
+await writeFile(new URL('_worker.js/index.js', output), `import { createSite } from './index.mjs';\nexport default createSite(${JSON.stringify(headers, null, 2)});\n`);
 
 const pages = [
   ['index.html', renderHome('en')],

@@ -12,8 +12,8 @@ const languagePaths = new Map([
   ['/creator/', { en: '/', fr: '/fr/' }]
 ]);
 
-export default {
-  async fetch(request, env) {
+export function createSite(headers) {
+  return { async fetch(request, env) {
     const ownerResponse = await ownerResources(request, env);
     if (ownerResponse) return ownerResponse;
 
@@ -45,6 +45,12 @@ export default {
       url.pathname = '/googlefc463a9e1454c920.txt';
       return env.ASSETS.fetch(new Request(url, request));
     }
-    return env.ASSETS.fetch(request);
-  }
-};
+    const asset = await env.ASSETS.fetch(request);
+    const response = new Response(asset.body, asset);
+    for (const [name, value] of Object.entries(headers)) response.headers.set(name, value);
+    if (url.pathname === '/ads.txt' && response.ok) {
+      response.headers.set('Content-Type', 'text/plain; charset=utf-8');
+    }
+    return response;
+  } };
+}

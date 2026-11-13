@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import test from 'node:test';
-import worker from '../worker/index.mjs';
+import worker from '../dist/_worker.js/index.js';
 
 const dist = new URL('../dist/', import.meta.url);
 const routes = [
@@ -93,6 +93,17 @@ test('public assets and exact Search Console verification filename are forwarded
   assert.equal(await response.text(), '/');
   const verification = await worker.fetch(new Request('https://kcaron.top/googlefc463a9e1454c920.html'), env);
   assert.equal(await verification.text(), '/googlefc463a9e1454c920.txt');
+});
+
+test('the deployed Pages entrypoint sends ad-compatible security headers and plain-text ads.txt', async () => {
+  const env = { ASSETS: { fetch: () => new Response('asset') } };
+  const home = await worker.fetch(new Request('https://kcaron.pages.dev/'), env);
+  const policy = home.headers.get('Content-Security-Policy');
+  assert.match(policy, /script-src 'self' https:\/\/pagead2\.googlesyndication\.com/);
+  assert.match(policy, /style-src 'self' 'sha256-[A-Za-z0-9+/]+='/);
+  assert.match(policy, /frame-src https:\/\/googleads\.g\.doubleclick\.net/);
+  const ads = await worker.fetch(new Request('https://kcaron.pages.dev/ads.txt'), env);
+  assert.equal(ads.headers.get('Content-Type'), 'text/plain; charset=utf-8');
 });
 
 test('owner requests fail closed before static assets or private storage are read', async () => {
