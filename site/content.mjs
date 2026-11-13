@@ -1,0 +1,79 @@
+export const github = 'https://github.com/kevincaron28';
+export const discord = 'https://discord.gg/YjzFwtP64V';
+export const origin = 'https://kcaron.top';
+
+export const copy = {
+  en: {
+    locale: 'en_CA', title: 'Kevin Caron — Independent developer in Québec',
+    description: 'Explore the apps, websites and World of Warcraft addons built by Kevin Caron, an independent developer in Québec.',
+    work: 'Projects', about: 'About', contact: 'Contact', skip: 'Skip to content',
+    role: 'Independent developer · Québec, Canada',
+    intro: 'I build apps, websites and game addons for the communities I’m part of, from livestreaming and World of Warcraft to tournament fishing.',
+    explore: 'Explore my projects', selected: 'Selected work',
+    lanternCategory: 'Windows app', lantern: 'Control TikTok LIVE Studio from your phone or tablet. Switch scenes, mute audio and see what’s active at a glance.',
+    lanternLink: 'View on GitHub',
+    fishingCategory: 'Community website', fishing: 'A bilingual home for our Québec fishing team, with a tournament directory, team results and a log of our days on the water.',
+    fishingLink: 'Visit Pied Marin Fishing', fishingAlt: 'A northern pike caught by the Pied Marin Fishing team',
+    guildedCategory: 'WoW Forever suite', guilded: 'Raid groups, loot, guild crafting and dungeon leaderboards, with optional Discord and companion sync.',
+    guildedLink: 'Visit Guilded', guildedAlt: 'Guild setup screen from the Guilded addon',
+    addons: 'More WoW addons', addonsIntro: 'Focused tools for fishing, exploration, raid planning and more.',
+    allAddons: 'See all 10 addons',
+    aboutTitle: 'Hi, I’m Kevin.',
+    bio: 'I’m an independent developer in Québec. My projects often start with something I want to make easier for a group I’m part of, like running a guild, controlling a stream or finding the next fishing tournament.',
+    contactTitle: 'Have feedback or a project idea?',
+    contactCopy: 'Find me on Discord or explore my work on GitHub.',
+    discordLink: 'Join the project Discord', footer: 'Independent development in Québec',
+    privacy: 'Privacy', privacyDescription: 'How kcaron.top handles advertising and your cookie choices.',
+    adsAnchor: 'advertising-and-cookies', adsHeading: 'Advertising and cookies',
+    adsIntro: 'This site uses Google AdSense to help pay for hosting. AdSense loads after you choose an option on a page that carries advertising. This site saves your choice in your browser.',
+    adsAccept: 'Accept allows Google to show personalised ads using information about your interests and activity.',
+    adsDecline: 'Decline requests non-personalised ads. Google may still use cookies for measurement and fraud prevention.',
+    adsChange: 'To change your choice, use Cookie choices in the footer of a page that carries advertising. You can also clear this site’s data in your browser.',
+    googlePrivacy: 'How Google uses information from sites that use its services', privacyContact: 'Privacy contact:',
+    scenes: 'Scenes', rehearsal: 'Rehearsal', gameplay: 'Gameplay', brb: 'Be right back',
+    starting: 'Starting soon', ending: 'Ending', microphone: 'Microphone', desktop: 'Desktop audio', on: 'On', muted: 'Muted'
+  },
+  fr: {
+    locale: 'fr_CA', title: 'Kevin Caron — Développeur indépendant au Québec',
+    description: 'Découvrez les applications, sites Web et addons pour World of Warcraft de Kevin Caron, développeur indépendant au Québec.',
+    work: 'Projets', about: 'À propos', contact: 'Contact', skip: 'Aller au contenu',
+    role: 'Développeur indépendant · Québec, Canada',
+    intro: 'Je développe des applications, des sites Web et des addons pour les communautés dont je fais partie, du streaming et de World of Warcraft aux tournois de pêche.',
+    explore: 'Découvrir mes projets', selected: 'Projets en vedette',
+    lanternCategory: 'Application Windows', lantern: 'Contrôlez TikTok LIVE Studio depuis votre téléphone ou votre tablette. Changez de scène, coupez le son et voyez d’un coup d’œil ce qui est actif.',
+    lanternLink: 'Voir sur GitHub',
+    fishingCategory: 'Site communautaire', fishing: 'Le site bilingue de notre équipe de pêche québécoise, avec un répertoire des tournois, nos résultats et un journal de nos sorties sur l’eau.',
+    fishingLink: 'Visiter Pied Marin Fishing', fishingAlt: 'Un grand brochet pêché par l’équipe Pied Marin Fishing',
+    guildedCategory: 'Suite pour WoW Forever', guilded: 'Groupes de raid, butin, artisanat de guilde et classements de donjons, avec synchronisation facultative via Discord et l’application compagnon.',
+    guildedLink: 'Visiter Guilded', guildedAlt: 'Écran de configuration de guilde dans l’addon Guilded',
+    addons: 'Autres addons pour WoW', addonsIntro: 'Des outils pour la pêche, l’exploration, la planification de raids et plus encore.',
+    allAddons: 'Voir les 10 addons',
+    aboutTitle: 'Salut, moi c’est Kevin.',
+    bio: 'Je suis développeur indépendant au Québec. Mes projets partent souvent d’une envie de simplifier quelque chose pour un groupe dont je fais partie, comme gérer une guilde, contrôler une diffusion ou trouver le prochain tournoi de pêche.',
+    contactTitle: 'Un commentaire ou une idée de projet ?',
+    contactCopy: 'Retrouvez-moi sur Discord ou explorez mon travail sur GitHub.',
+    discordLink: 'Rejoindre le Discord des projets', footer: 'Développement indépendant au Québec',
+    privacy: 'Confidentialité', privacyDescription: 'Comment kcaron.top gère la publicité et vos choix de témoins.',
+    adsAnchor: 'publicité-et-témoins', adsHeading: 'Publicité et témoins',
+    adsIntro: 'Ce site utilise Google AdSense pour aider à payer l’hébergement. AdSense se charge après votre choix sur une page qui peut afficher des annonces. Ce site enregistre votre choix dans votre navigateur.',
+    adsAccept: 'Accepter permet à Google d’afficher des annonces personnalisées selon vos intérêts et votre activité.',
+    adsDecline: 'Refuser demande des annonces non personnalisées. Google peut quand même utiliser des témoins pour la mesure et la prévention de la fraude.',
+    adsChange: 'Pour modifier votre choix, utilisez Choix de témoins au bas d’une page qui peut afficher des annonces. Vous pouvez aussi effacer les données de ce site dans votre navigateur.',
+    googlePrivacy: 'Comment Google utilise les données des sites qui emploient ses services', privacyContact: 'Responsable de la confidentialité :',
+    scenes: 'Scènes', rehearsal: 'Répétition', gameplay: 'En jeu', brb: 'De retour bientôt',
+    starting: 'Début imminent', ending: 'Fin', microphone: 'Microphone', desktop: 'Son du PC', on: 'Actif', muted: 'Coupé'
+  }
+};
+
+export const addons = [
+  { name: 'Catchkeeper', slug: 'catchkeeper', en: 'A journal for your catches, fishing spots and sessions.', fr: 'Un journal de vos prises, lieux de pêche et sessions.', image: 'catchkeeper.png' },
+  { name: 'Trailmark', slug: 'trailmark', en: 'Record the routes you take through Azeroth.', fr: 'Gardez une trace de vos trajets en Azeroth.', image: 'trailmark.png' },
+  { name: 'Guilded Dungeons', slug: 'guilded-dungeons', en: 'Dungeon timers, run results and leaderboards.', fr: 'Chronos de donjon, résultats et classements.' },
+  { name: 'Guilded Games', slug: 'guilded-games', en: 'Dice and trivia games for party and raid chat.', fr: 'Jeux de dés et quiz pour le clavardage de groupe ou de raid.' },
+  { name: 'Pullscript', slug: 'pullscript', en: 'Raid assignments, markers and pull timers.', fr: 'Affectations de raid, marqueurs et comptes à rebours.' },
+  { name: 'Well Supplied', slug: 'well-supplied', en: 'Reminders for buffs and raid preparation.', fr: 'Rappels de buffs et de préparation de raid.' },
+  { name: 'Tandem', slug: 'tandem', en: 'Partner targeting and customizable buttons for duo play.', fr: 'Ciblage du partenaire et boutons personnalisables pour jouer en duo.' },
+  { name: 'Wayledger', slug: 'wayledger', en: 'Wishlists and planning for item and recipe runs.', fr: 'Listes d’objets et de recettes à obtenir, et planification de sorties.' },
+  { name: 'Unfinished Business', slug: 'unfinished-business', en: 'Track personal goals for items, levels, quests and reputation.', fr: 'Suivi des objectifs d’objets, de niveaux, de quêtes et de réputation.' },
+  { name: 'Spellscript', slug: 'spellscript', en: 'A guided macro editor with saved drafts.', fr: 'Un éditeur guidé de macros avec sauvegarde des brouillons.' }
+];

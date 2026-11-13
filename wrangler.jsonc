@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kcaron-top",
+  "compatibility_date": "2026-11-13",
+  "pages_build_output_dir": "./dist",
+  "kv_namespaces": [
+    {
+      "binding": "OWNER_RESOURCES",
+      "id": "ce3898387649485cbc95087cc4e98493"
+    }
+  ]
+}
