@@ -9,6 +9,8 @@ const languagePaths = new Map([
   ['/fr/addons/', { en: '/addons/', fr: '/fr/addons/' }],
   ['/privacy/', { en: '/privacy/', fr: '/fr/privacy/' }],
   ['/fr/privacy/', { en: '/privacy/', fr: '/fr/privacy/' }],
+  ['/goldline/privacy/', { en: '/goldline/privacy/', fr: '/fr/goldline/privacy/' }],
+  ['/fr/goldline/privacy/', { en: '/goldline/privacy/', fr: '/fr/goldline/privacy/' }],
   ['/creator/', { en: '/', fr: '/fr/' }]
 ]);
 

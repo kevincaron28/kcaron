@@ -1,8 +1,8 @@
 import { addons, copy, discord, github, origin } from './content.mjs';
 
 const paths = {
-  en: { home: '/', addons: '/addons/', privacy: '/privacy/' },
-  fr: { home: '/fr/', addons: '/fr/addons/', privacy: '/fr/privacy/' }
+  en: { home: '/', addons: '/addons/', privacy: '/privacy/', goldlinePrivacy: '/goldline/privacy/' },
+  fr: { home: '/fr/', addons: '/fr/addons/', privacy: '/fr/privacy/', goldlinePrivacy: '/fr/goldline/privacy/' }
 };
 const escape = value => value.replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -14,9 +14,9 @@ const link = (url, label, className = 'text-link') =>
 function layout(lang, page, body) {
   const t = copy[lang];
   const urls = paths[lang];
-  const pageTitle = page === 'addons' ? t.addons : t.privacy;
+  const pageTitle = page === 'addons' ? t.addons : page === 'goldlinePrivacy' ? t.goldlinePrivacyTitle : t.privacy;
   const title = page === 'home' ? t.title : `${pageTitle} — Kevin Caron`;
-  const description = page === 'home' ? t.description : page === 'addons' ? t.addonsIntro : t.privacyDescription;
+  const description = page === 'home' ? t.description : page === 'addons' ? t.addonsIntro : page === 'goldlinePrivacy' ? t.goldlinePrivacyDescription : t.privacyDescription;
   return `<!doctype html>
 <html lang="${lang}-CA">
 <head>
@@ -63,7 +63,7 @@ function layout(lang, page, body) {
   <footer class="footer">
     <div class="shell footer-inner"><span>Kevin Caron · ${t.footer}</span>${link(github, 'GitHub')} ${link(discord, 'Discord')} <a class="text-link" href="${urls.privacy}">${t.privacy}</a></div>
   </footer>
-  ${page === 'privacy' ? '' : '<script src="/consent.js" defer></script>'}
+  ${page === 'privacy' || page === 'goldlinePrivacy' ? '' : '<script src="/consent.js" defer></script>'}
 </body>
 </html>
 `;
@@ -139,6 +139,7 @@ export function renderHome(lang) {
             <div class="project-copy">
               <p class="label">${t.goldlineCategory}</p><h3>Goldline</h3><p>${t.goldline}</p>
               ${link('https://github.com/kevincaron28/Trading-Wow/releases/latest/download/goldline.apk', t.goldlineLink, 'button')}
+              <p><a class="text-link" href="${paths[lang].goldlinePrivacy}">${t.goldlinePrivacyTitle}</a></p>
             </div>
           </article>
         </div>
@@ -186,5 +187,20 @@ export function renderPrivacy(lang) {
       <p>${t.privacyContact} <strong>Kevin Caron</strong>.</p>
       <p>${link(discord, t.discordLink)}</p>
     </section>
+  </main>`);
+}
+
+export function renderGoldlinePrivacy(lang) {
+  const t = copy[lang];
+  const section = (id, heading, body) => `<section aria-labelledby="${id}"><h2 id="${id}">${heading}</h2>${body}</section>`;
+  return layout(lang, 'goldlinePrivacy', `<main id="main" class="shell catalog privacy">
+    <a class="text-link" href="${paths[lang].home}#work"><span aria-hidden="true">←</span> ${t.work}</a>
+    <h1>${t.goldlinePrivacyTitle}</h1><p>${t.goldlinePrivacyDescription}</p>
+    ${section('goldline-collect', t.gpCollectHeading, `<p>${t.gpCollect}</p>`)}
+    ${section('goldline-device', t.gpDeviceHeading, `<p>${t.gpDevice}</p>`)}
+    ${section('goldline-network', t.gpNetworkHeading, `<p>${t.gpNetwork}</p><ul><li>${t.gpNetworkPrices}</li><li>${t.gpNetworkIcons}</li></ul><p>${t.gpNetworkNote}</p>`)}
+    ${section('goldline-notifications', t.gpNotificationsHeading, `<p>${t.gpNotifications}</p>`)}
+    ${section('goldline-children', t.gpChildrenHeading, `<p>${t.gpChildren}</p>`)}
+    ${section('goldline-contact', t.contact, `<p>${t.gpContact} <strong>Kevin Caron</strong>.</p><p>${link(discord, t.discordLink)}</p><p>${t.gpUpdated}</p>`)}
   </main>`);
 }

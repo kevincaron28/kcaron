@@ -11,7 +11,9 @@ const routes = [
   ['/addons/', 'en-CA', '/fr/addons/'],
   ['/fr/addons/', 'fr-CA', '/addons/'],
   ['/privacy/', 'en-CA', '/fr/privacy/'],
-  ['/fr/privacy/', 'fr-CA', '/privacy/']
+  ['/fr/privacy/', 'fr-CA', '/privacy/'],
+  ['/goldline/privacy/', 'en-CA', '/fr/goldline/privacy/'],
+  ['/fr/goldline/privacy/', 'fr-CA', '/goldline/privacy/']
 ];
 
 test('all published pages resolve assets, links, section anchors and their translated counterpart', async () => {
