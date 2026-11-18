@@ -135,6 +135,12 @@ export function renderHome(lang) {
               ${link('https://guildedwow.com/', t.guildedLink)}
             </div>
           </article>
+          <article class="project">
+            <div class="project-copy">
+              <p class="label">${t.goldlineCategory}</p><h3>Goldline</h3><p>${t.goldline}</p>
+              ${link('https://github.com/kevincaron28/Trading-Wow/releases/latest/download/goldline.apk', t.goldlineLink, 'button')}
+            </div>
+          </article>
         </div>
       </section>
       <section class="addons-section" aria-labelledby="addons-title">
