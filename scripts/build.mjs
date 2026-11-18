@@ -1,5 +1,5 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { renderAddons, renderHome, renderPrivacy } from '../site/pages.mjs';
+import { renderAddons, renderGoldlinePrivacy, renderHome, renderPrivacy } from '../site/pages.mjs';
 import { publicHeaders } from '../site/headers.mjs';
 
 const output = new URL('../dist/', import.meta.url);
@@ -16,7 +16,9 @@ const pages = [
   ['addons/index.html', renderAddons('en')],
   ['fr/addons/index.html', renderAddons('fr')],
   ['privacy/index.html', renderPrivacy('en')],
-  ['fr/privacy/index.html', renderPrivacy('fr')]
+  ['fr/privacy/index.html', renderPrivacy('fr')],
+  ['goldline/privacy/index.html', renderGoldlinePrivacy('en')],
+  ['fr/goldline/privacy/index.html', renderGoldlinePrivacy('fr')]
 ];
 
 for (const [path, html] of pages) {
