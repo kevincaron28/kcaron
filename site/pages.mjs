@@ -23,6 +23,7 @@ function layout(lang, page, body) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171a17">
+  <meta name="google-adsense-account" content="ca-pub-6948243189424271">
   <title>${escape(title)}</title>
   <meta name="description" content="${escape(description)}">
   <link rel="canonical" href="${origin}${urls[page]}">
