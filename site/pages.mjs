@@ -138,7 +138,7 @@ export function renderHome(lang) {
           </article>
           <article class="project">
             <div class="project-copy">
-              <p class="label">${t.goldlineCategory}</p><h3>Goldline</h3><p>${t.goldline}</p>
+              <p class="label">${t.goldlineCategory}</p><h3>Goblin Ledger</h3><p>${t.goldline}</p>
               ${link('https://github.com/kevincaron28/Trading-Wow/releases/latest/download/goldline.apk', t.goldlineLink, 'button')}
               <p><a class="text-link" href="${paths[lang].goldlinePrivacy}">${t.goldlinePrivacyTitle}</a></p>
             </div>
@@ -199,7 +199,7 @@ export function renderGoldlinePrivacy(lang) {
     <h1>${t.goldlinePrivacyTitle}</h1><p>${t.goldlinePrivacyDescription}</p>
     ${section('goldline-collect', t.gpCollectHeading, `<p>${t.gpCollect}</p>`)}
     ${section('goldline-device', t.gpDeviceHeading, `<p>${t.gpDevice}</p>`)}
-    ${section('goldline-network', t.gpNetworkHeading, `<p>${t.gpNetwork}</p><ul><li>${t.gpNetworkPrices}</li><li>${t.gpNetworkIcons}</li></ul><p>${t.gpNetworkNote}</p>`)}
+    ${section('goldline-network', t.gpNetworkHeading, `<p>${t.gpNetwork}</p><ul><li>${t.gpNetworkPrices}</li><li>${t.gpNetworkIcons}</li><li>${t.gpNetworkUpdates}</li></ul><p>${t.gpNetworkNote}</p>`)}
     ${section('goldline-notifications', t.gpNotificationsHeading, `<p>${t.gpNotifications}</p>`)}
     ${section('goldline-children', t.gpChildrenHeading, `<p>${t.gpChildren}</p>`)}
     ${section('goldline-contact', t.contact, `<p>${t.gpContact} <strong>Kevin Caron</strong>.</p><p>${link(discord, t.discordLink)}</p><p>${t.gpUpdated}</p>`)}
