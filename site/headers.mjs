@@ -14,3 +14,13 @@ export function publicHeaders(consent) {
     'Content-Security-Policy': `default-src 'none'; script-src 'self' ${scripts}; style-src 'self' 'sha256-${hash}'; frame-src ${frames}; connect-src ${connections}; font-src 'self'; img-src 'self' https:; base-uri 'none'; frame-ancestors 'none'; form-action 'none'`
   };
 }
+
+// The Goblin Ledger web app reads prices from data.kcaron.top (GitHub as a backup), shows Blizzard's item icons and
+// sets styles from script (chart library). It carries no ads, so Google is not allowed here.
+export function appHeaders() {
+  return {
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Content-Security-Policy': "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://data.kcaron.top https://raw.githubusercontent.com https://github.com; img-src 'self' data: blob: https://render.worldofwarcraft.com; font-src 'self' data:; manifest-src 'self'; worker-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"
+  };
+}

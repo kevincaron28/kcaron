@@ -1,20 +1,15 @@
 import { createOwnerResources } from './private-resources.mjs';
 import { resources } from './owner-manifest.mjs';
+import { french, goblinLedgerApp, pages } from './routes.mjs';
 
 const ownerResources = createOwnerResources({ resources });
 const languagePaths = new Map([
-  ['/', { en: '/', fr: '/fr/' }],
-  ['/fr/', { en: '/', fr: '/fr/' }],
-  ['/addons/', { en: '/addons/', fr: '/fr/addons/' }],
-  ['/fr/addons/', { en: '/addons/', fr: '/fr/addons/' }],
-  ['/privacy/', { en: '/privacy/', fr: '/fr/privacy/' }],
-  ['/fr/privacy/', { en: '/privacy/', fr: '/fr/privacy/' }],
-  ['/goldline/privacy/', { en: '/goldline/privacy/', fr: '/fr/goldline/privacy/' }],
-  ['/fr/goldline/privacy/', { en: '/goldline/privacy/', fr: '/fr/goldline/privacy/' }],
+  ...pages.flatMap(path => [path, french(path)].map(from => [from, { en: path, fr: french(path) }])),
   ['/creator/', { en: '/', fr: '/fr/' }]
 ]);
 
-export function createSite(headers) {
+// headers: { site, app } security headers; the Goblin Ledger web app gets its own.
+export function createSite({ site: headers, app: appHeaders }) {
   return { async fetch(request, env) {
     const ownerResponse = await ownerResources(request, env);
     if (ownerResponse) return ownerResponse;
@@ -26,6 +21,12 @@ export function createSite(headers) {
     const path = url.pathname.endsWith('/') ? url.pathname : url.pathname + '/';
     const language = url.searchParams.get('lang');
     if (path === '/support/') return Response.redirect('https://ko-fi.com/wowguilded', 302);
+    // One web app for both languages: the French address keeps its query (item links) and lands on the same app.
+    if (path === '/fr' + goblinLedgerApp) {
+      if (url.hostname === 'www.kcaron.top') url.hostname = 'kcaron.top';
+      url.pathname = goblinLedgerApp;
+      return Response.redirect(url.href, 308);
+    }
     if (path === '/docs/PRIVACY/') {
       if (url.hostname === 'www.kcaron.top') url.hostname = 'kcaron.top';
       url.pathname = language === 'fr' ? '/fr/privacy/' : '/privacy/';
@@ -49,7 +50,8 @@ export function createSite(headers) {
     }
     const asset = await env.ASSETS.fetch(request);
     const response = new Response(asset.body, asset);
-    for (const [name, value] of Object.entries(headers)) response.headers.set(name, value);
+    const app = url.pathname.startsWith(goblinLedgerApp);
+    for (const [name, value] of Object.entries(app ? appHeaders : headers)) response.headers.set(name, value);
     if (url.pathname === '/ads.txt' && response.ok) {
       response.headers.set('Content-Type', 'text/plain; charset=utf-8');
     }
