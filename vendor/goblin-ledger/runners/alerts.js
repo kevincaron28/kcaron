@@ -37,7 +37,7 @@ function money(copper, lang) {
   var g = Math.floor(copper / 10000);
   var s = Math.floor((copper % 10000) / 100);
   var c = copper % 100;
-  var u = lang === "fr" ? ["po", "pa", "pc"] : ["g", "s", "c"];
+  var u = ["g", "s", "c"];
   if (g > 0) return g + u[0] + (s > 0 ? " " + s + u[1] : "");
   if (s > 0) return s + u[1] + (c > 0 ? " " + c + u[2] : "");
   return c + u[2];
