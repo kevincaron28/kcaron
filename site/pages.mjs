@@ -312,6 +312,7 @@ export function renderGoldlinePrivacy(lang) {
     ${section('goldline-collect', t.gpCollectHeading, `<p>${t.gpCollect}</p>`)}
     ${section('goldline-device', t.gpDeviceHeading, `<p>${t.gpDevice}</p>`)}
     ${section('goldline-network', t.gpNetworkHeading, `<p>${t.gpNetwork}</p><ul><li>${t.gpNetworkPrices}</li><li>${t.gpNetworkIcons}</li><li>${t.gpNetworkUpdates}</li></ul><p>${t.gpNetworkNote}</p>`)}
+    ${section('goldline-feedback', t.gpFeedbackHeading, `<ul><li>${t.gpFeedback}</li><li>${t.gpRatings}</li><li>${t.gpSharing}</li></ul>`)}
     ${section('goldline-notifications', t.gpNotificationsHeading, `<p>${t.gpNotifications}</p>`)}
     ${section('goldline-children', t.gpChildrenHeading, `<p>${t.gpChildren}</p>`)}
     ${section('goldline-contact', t.contact, `<p>${t.gpContact} <strong>Kevin Caron</strong>.</p><p><a class="text-link" href="${discord}">${t.discordLink} ${external}</a></p><p>${t.gpUpdated}</p>`)}

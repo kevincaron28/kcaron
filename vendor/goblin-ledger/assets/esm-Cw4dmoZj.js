@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-BCQr-ENw.js","./weekly-CmPRKKGn.js","./weekly-CoESuYR5.css"])))=>i.map(i=>d[i]);
+import{Nt as e,tn as t}from"./weekly-CmPRKKGn.js";var n=t(`CapacitorBackgroundRunner`,{web:()=>e(()=>import(`./web-BCQr-ENw.js`).then(e=>new e.BackgroundRunnerWeb),__vite__mapDeps([0,1,2]),import.meta.url)});export{n as BackgroundRunner};
