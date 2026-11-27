@@ -11,7 +11,8 @@ export const statusLabels = {
   coming: b('Coming soon', 'Bientôt')
 };
 
-// Phone screenshots are 9:16; wide ones keep their own ratio.
+// Phone screenshots are 9:16; wide ones keep their own ratio. Goblin Ledger's French pages show the English
+// screenshots: money on the site is always written g s c (3g 65s), never po/pa/pc.
 const phone = (src, alt, caption, lang = true) => ({ src, alt, caption, lang, frame: 'phone', width: 540, height: 960 });
 const wide = (src, alt, caption, width, height, lang = false) => ({ src, alt, caption, lang, frame: 'wide', width, height });
 
@@ -179,11 +180,11 @@ export const products = [
       { href: 'testers/', label: b('Become an Android tester', 'Devenir testeur Android'), local: true }
     ],
     shots: [
-      phone('goblin-ledger/overview', b('Goblin Ledger Market tab with the weekly summary and the Ledger 100 index', 'Onglet Marché de Goblin Ledger avec le résumé de la semaine et l’indice Ledger 100'), b('Market: the week and the Ledger 100 index', 'Marché : la semaine et l’indice Ledger 100')),
-      phone('goblin-ledger/watchlist', b('Goblin Ledger Flipping watchlist with prices and 24h change', 'Liste de suivi Revente de Goblin Ledger avec prix et variation sur 24 h'), b('Watchlists with 24h change', 'Listes de suivi avec variation sur 24 h')),
-      phone('goblin-ledger/chart', b('Goblin Ledger candle chart for Black Lotus', 'Graphique en chandeliers du Lotus noir dans Goblin Ledger'), b('Charts for every item', 'Un graphique pour chaque objet')),
-      phone('goblin-ledger/explore', b('Goblin Ledger Explore tab with item categories', 'Onglet Explorer de Goblin Ledger avec les catégories d’objets'), b('Explore every item on sale', 'Explorez tout ce qui est en vente')),
-      phone('goblin-ledger/alerts', b('Goblin Ledger price and deal alerts', 'Alertes de prix et d’aubaines de Goblin Ledger'), b('Price and deal alerts', 'Alertes de prix et d’aubaines'))
+      phone('goblin-ledger/overview-en', b('Goblin Ledger Market tab with the weekly summary and the Ledger 100 index', 'Onglet Marché de Goblin Ledger avec le résumé de la semaine et l’indice Ledger 100'), b('Market: the week and the Ledger 100 index', 'Marché : la semaine et l’indice Ledger 100'), false),
+      phone('goblin-ledger/watchlist-en', b('Goblin Ledger Flipping watchlist with prices and 24h change', 'Liste de suivi Revente de Goblin Ledger avec prix et variation sur 24 h'), b('Watchlists with 24h change', 'Listes de suivi avec variation sur 24 h'), false),
+      phone('goblin-ledger/chart-en', b('Goblin Ledger candle chart for Black Lotus', 'Graphique en chandeliers du Lotus noir dans Goblin Ledger'), b('Charts for every item', 'Un graphique pour chaque objet'), false),
+      phone('goblin-ledger/explore-en', b('Goblin Ledger Explore tab with item categories', 'Onglet Explorer de Goblin Ledger avec les catégories d’objets'), b('Explore every item on sale', 'Explorez tout ce qui est en vente'), false),
+      phone('goblin-ledger/alerts-en', b('Goblin Ledger price and deal alerts', 'Alertes de prix et d’aubaines de Goblin Ledger'), b('Price and deal alerts', 'Alertes de prix et d’aubaines'), false)
     ],
     features: [
       [b('Market overview', 'Aperçu du marché'), b('The week in a few lines, the Ledger 100 price index, gold traded and the biggest movers.', 'La semaine en quelques lignes, l’indice des prix Ledger 100, l’or échangé et les plus fortes variations.')],
