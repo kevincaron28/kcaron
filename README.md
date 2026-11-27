@@ -4,7 +4,9 @@ Independent portfolio for [kcaron.top](https://kcaron.top/). English lives at `/
 
 `npm run build` renders the site to `dist/`. Serve that directory at the web root for a public preview. Use Node 24 and `npm test` to check the generated site and Worker routing.
 
-Edit project descriptions and catalog entries in `site/content.mjs`. Styles and public media are in `public/`. The Lantern Deck panel is an illustration of its controls. The fishing photo comes from Pied Marin Fishing and the Guilded image is an addon screenshot.
+Each product has its own page (EN and FR) with screenshots, features, install steps and usage guides. Edit products in `site/products.mjs`, site wording and privacy text in `site/content.mjs`, and the page list in `worker/routes.mjs` (the build, sitemap and `?lang=` redirects all read it). Styles are in `public/portfolio.css`. Screenshots in `public/assets/products/` are real captures from the apps, their store listings and the live websites, saved as WebP.
+
+The Goblin Ledger web app is served at `/goblin-ledger/app/` from the build in `vendor/goblin-ledger/` (see `vendor/README.md` to update it). It gets its own Content-Security-Policy, without ads.
 
 ## Cloudflare Pages preview and cutover
 

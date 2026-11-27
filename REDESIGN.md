@@ -37,3 +37,21 @@ The review covered public-facing positioning and portfolio evidence. It did not 
 | GitHub repository and removal of old Guilded creator files | Pending remote repository and verified cutover |
 
 The existing Worker remains the rollback target until both hostnames and the authenticated owner download are verified. See the README for the cutover order.
+
+## November 2026: product hub
+
+kcaron.top became the hub for every product, with one page per product in English and Québec French.
+
+| Page | What it has |
+| --- | --- |
+| Home (`/`, `/fr/`) | Short intro, the three apps with real screenshots and status badges, then Lantern Deck, Pied Marin and the addons |
+| Guilded, Cardstead, Goblin Ledger, Lantern Deck, Pied Marin (`/<product>/`) | What it is, screenshots, features, install steps per platform with a status (live, closed testing, coming), how to use the main features |
+| Goblin Ledger testers (`/goblin-ledger/testers/`) | The three tester steps: Google Group, Play opt-in, install |
+| Goblin Ledger web app (`/goblin-ledger/app/`) | The real app, with item links `?house=<id>&item=<id>` |
+| WoW addons (`/addons/`) | All ten addons, each with an anchor, and how to install with CurseForge or by hand |
+
+Design: a light, neutral site (dark when the system is dark) with Inter. Each product page takes its own brand colour, so Guilded, Cardstead and Goblin Ledger stay separate brands. The pages need no JavaScript beyond the existing consent script.
+
+Screenshots are real: the Guilded Play and Microsoft Store listings and in-game captures from the Guilded repo, and fresh captures of the Cardstead web app, the Goblin Ledger web app and piedmarinfishing.com in both languages. Lantern Deck has no screenshots yet, so its page shows none rather than a drawing of the UI.
+
+Unchanged: `/privacy/`, `/goldline/privacy/` (linked from Google Play) and their French pages, ads.txt, consent and AdSense tags, `/owner`, `/support/` and the Search Console file. The sitemap is now generated from `worker/routes.mjs`.

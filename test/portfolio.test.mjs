@@ -3,18 +3,10 @@ import { access, readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import test from 'node:test';
 import worker from '../dist/_worker.js/index.js';
+import { french, pages } from '../worker/routes.mjs';
 
 const dist = new URL('../dist/', import.meta.url);
-const routes = [
-  ['/', 'en-CA', '/fr/'],
-  ['/fr/', 'fr-CA', '/'],
-  ['/addons/', 'en-CA', '/fr/addons/'],
-  ['/fr/addons/', 'fr-CA', '/addons/'],
-  ['/privacy/', 'en-CA', '/fr/privacy/'],
-  ['/fr/privacy/', 'fr-CA', '/privacy/'],
-  ['/goldline/privacy/', 'en-CA', '/fr/goldline/privacy/'],
-  ['/fr/goldline/privacy/', 'fr-CA', '/goldline/privacy/']
-];
+const routes = pages.flatMap(path => [[path, 'en-CA', french(path)], [french(path), 'fr-CA', path]]);
 
 test('all published pages resolve assets, links, section anchors and their translated counterpart', async () => {
   for (const [path, lang, alternate] of routes) {
@@ -48,7 +40,10 @@ test('legacy URLs and www redirect to their canonical page', async () => {
     ['https://kcaron.top/creator/?lang=fr', 'https://kcaron.top/fr/'],
     ['https://kcaron.top/creator/index.html', 'https://kcaron.top/'],
     ['https://www.kcaron.top/?lang=fr', 'https://kcaron.top/fr/'],
-    ['https://kcaron.top/fr/addons/?lang=en', 'https://kcaron.top/addons/']
+    ['https://kcaron.top/fr/addons/?lang=en', 'https://kcaron.top/addons/'],
+    ['https://kcaron.top/guilded/?lang=fr', 'https://kcaron.top/fr/guilded/'],
+    ['https://kcaron.top/fr/goblin-ledger/testers/?lang=en', 'https://kcaron.top/goblin-ledger/testers/'],
+    ['https://kcaron.top/fr/goblin-ledger/app/?house=113&item=22457', 'https://kcaron.top/goblin-ledger/app/?house=113&item=22457']
   ];
   for (const [from, to] of cases) {
     const response = await worker.fetch(new Request(from), {});
@@ -123,6 +118,40 @@ test('owner requests fail closed before static assets or private storage are rea
     assert.equal((await worker.fetch(new Request(`https://www.kcaron.top${path}`), env)).status, 404);
     assert.equal((await worker.fetch(new Request(`https://kcaron.top${path}`), { ...env, OWNER_ACCESS_AUD: '' })).status, 503);
   }
+});
+
+test('every product has its own page in both languages, with real screenshots and guides', async () => {
+  for (const slug of ['guilded', 'cardstead', 'goblin-ledger', 'lantern-deck', 'pied-marin']) {
+    for (const path of [`/${slug}/`, `/fr/${slug}/`]) {
+      const html = await page(path);
+      assert.ok(html.includes('id="features"') && html.includes('id="guides"'), path);
+      if (slug !== 'lantern-deck') assert.match(html, /<img src="\/assets\/products\/[^"]+\.webp"/, path);
+    }
+  }
+  const sitemap = await readFile(new URL('sitemap.xml', dist), 'utf8');
+  for (const [path] of routes) assert.ok(sitemap.includes(`<loc>https://kcaron.top${path}</loc>`), path);
+});
+
+test('the Goblin Ledger tester page gives the three steps and links the web app', async () => {
+  for (const path of ['/goblin-ledger/testers/', '/fr/goblin-ledger/testers/']) {
+    const html = await page(path);
+    assert.ok(html.includes('testers-community@googlegroups.com'));
+    assert.ok(html.includes('https://play.google.com/apps/testing/top.kcaron.goldline'));
+    assert.ok(html.includes('https://play.google.com/store/apps/details?id=top.kcaron.goldline'));
+    assert.ok(html.includes('href="/goblin-ledger/app/"'));
+  }
+});
+
+test('the Goblin Ledger web app is published with its own security headers', async () => {
+  const app = await readFile(new URL('goblin-ledger/app/index.html', dist), 'utf8');
+  for (const [, asset] of app.matchAll(/(?:href|src)="\.\/([^"]+)"/g)) await access(new URL('goblin-ledger/app/' + asset, dist));
+  const env = { ASSETS: { fetch: () => new Response('asset') } };
+  const response = await worker.fetch(new Request('https://kcaron.top/goblin-ledger/app/?house=113&item=22457'), env);
+  const policy = response.headers.get('Content-Security-Policy');
+  assert.match(policy, /connect-src 'self' https:\/\/data\.kcaron\.top/);
+  assert.doesNotMatch(policy, /googlesyndication/);
+  const home = await worker.fetch(new Request('https://kcaron.top/goblin-ledger/'), env);
+  assert.match(home.headers.get('Content-Security-Policy'), /googlesyndication/);
 });
 
 function page(path) {
